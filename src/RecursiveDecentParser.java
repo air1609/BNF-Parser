@@ -16,9 +16,7 @@ public class RecursiveDecentParser {
 
     private int parseExpression(Queue<String> exp) {
         int value = parseTerm(exp);
-        while (exp.peek().equals("+") ||
-                exp.peek().equals("-")) {
-
+        while (exp.peek().equals("+") || exp.peek().equals("-")) {
             String op = exp.dequeue().getData().toString();
             if (op.equals("+")) {
                 value = value + parseTerm(exp);
@@ -31,11 +29,9 @@ public class RecursiveDecentParser {
 
     private int parseTerm(Queue<String> exp) {
         int value = parseFactor(exp);
-        while (exp.peek().equals("*") ||
-                exp.peek().equals("/")) {
-
-            String op = exp.dequeue().getData().toString();
-            if (op.equals("*")) {
+        while (exp.peek().equals("*") || exp.peek().equals("/")) {
+            String next = exp.dequeue().getData().toString();
+            if (next.equals("*")) {
                 value = value * parseFactor(exp);
             } else {
                 value = value / parseFactor(exp);
